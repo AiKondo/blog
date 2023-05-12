@@ -26,53 +26,17 @@ const { items: articles} = await newtClient.getContents<Article>({
 					)
 				})
 			}
+			<br>
+			<a href ={`/contact`}>🌟お問い合わせはこちらから🌟</a>
 		</ul>
 	</main>
 </Layout>
 
-<Layout title="お問い合わせフォーム">
-    <div class="contact">
-		<div>
-			<h1>お問い合わせフォーム(ページ遷移予定）</h1>
-        	<form action="https://ai-sato.form.newt.so/v1/WoSK7u5_X" method="post">
-			<ul>
-				<li class="name">
-					<label for="name">お名前</label><br>
-            		<input id="name" name="name" />
-				</li>
-				<li class="email">
-					<label for="email">メールアドレス</label><br>
-            		<input id="email" name="email" type="email" />
-				</li>
-				<li class="message">
-					<label for="message">お問い合わせ内容</label><br>
-            		<textarea id="message" name="message" maxlength="500" rows="4" cols="40"></textarea>
-				</li>
-				<button type="submit">送信</button>
-			</ul>
-        	</form>
-		</div>	
-    </div>
-</Layout>
 
 <style>
-	h1{
-		color: green;
-	}
-
-	.contact{
-		display: flex;
-		justify-content: center;
-	}
 
 	ul li{
 		list-style: none;
 	}
-
-
-	button{
-		margin: auto;
-	}
-
 
 </style>
