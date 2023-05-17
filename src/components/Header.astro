@@ -1,0 +1,139 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+
+---
+<nav class="main-nav">
+    <div class="main">
+        <ul>
+            <li class="title">{ SITE_TITLE }</li>
+            <li class="link"><HeaderLink href="/">Home</HeaderLink></li>
+            <li class="link"><HeaderLink href="/profile">Profile</HeaderLink></li>
+            <li class="link"><HeaderLink href="/contact">Contact</HeaderLink></li>
+        </ul>
+        <!-- スマホ画面で表示されるハンバーガーメニュー -->
+        <div id="openbtn"><span></span><span></span><span></span></div>
+    </div>
+</nav>  
+
+<!-- ハンバーガーメニュー押下後に表示されるサイドメニュー -->
+<nav class="sub-nav">
+    <ul>
+        <li class="link"><HeaderLink href="/">Home</HeaderLink></li>
+        <li class="link"><HeaderLink href="/profile">Profile</HeaderLink></li>
+        <li class="link"><HeaderLink href="/contact">Contact</HeaderLink></li> 
+    </ul>
+
+</nav>
+
+<script>
+  function handleClick () {
+    console.log("ボタンがクリックされました！");
+
+  }
+document.getElementById("openbtn").addEventListener("click", handleClick);
+
+
+const target = document.getElementById('openbtn');
+
+target.addEventListener('click', function(){
+  this.classList.toggle('active');
+});
+</script>
+
+<style>
+    .main-nav li.title{
+        margin-right: auto;
+        color: #ffffff;
+        font-size: 40px;
+    }
+    
+
+    .main-nav{
+        background: #000000;
+        border-bottom: 5px solid #37a29B;
+    }
+
+    .main-nav ul{
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+        margin: 0;
+        padding: 20px 10px 0 10px;
+    }
+
+    .main-nav li HeaderLink:hover{
+        background: #37a29B;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .sub-nav{
+        display: none;
+    }
+
+
+
+    /* スマホ用の画面レイアウト作成 */
+    @media screen and (max-width: 640px) {
+        .link{
+            display: none;
+        }
+
+        #openbtn{
+            position: relative;/*ボタン内側の基点となるためrelativeを指定*/
+            background:#37a29B;
+            cursor: pointer;
+            width: 50px;
+            height:50px;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+
+        .main{
+            display: flex;
+        }
+
+        #openbtn span{
+            display: inline-block;
+            transition: all .4s;/*アニメーションの設定*/
+            position: absolute;
+            left: 14px;
+            height: 3px;
+            border-radius: 2px;
+            background: #fff;
+            width: 45%;
+            }
+
+        #openbtn span:nth-of-type(1) {
+            top:15px; 
+        }
+
+        #openbtn span:nth-of-type(2) {
+            top:23px;
+        }
+
+        #openbtn span:nth-of-type(3) {
+            top:31px;
+        }
+
+        /*activeクラスが付与されると線が回転して×に*/
+
+        #openbtn.active span:nth-of-type(1) {  
+            top: 18px;
+            left: 18px;
+            transform: translateY(6px) rotate(-45deg);
+            width: 30%;
+        }
+
+        #openbtn.active span:nth-of-type(2) {
+            opacity: 0;/*真ん中の線は透過*/
+        }
+
+        #openbtn.active span:nth-of-type(3){
+            top: 30px;
+            left: 18px;
+            transform: translateY(-6px) rotate(45deg);
+            width: 30%;
+        }
+    }
+</style>

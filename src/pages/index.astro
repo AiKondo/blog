@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro'
 import { newtClient} from '../lib/newt'
 import type { Article } from '../lib/newt'
+import Header from '../components/Header.astro'
+import { SITE_TITLE } from '../consts';
 
 const { items: articles} = await newtClient.getContents<Article>({
 	appUid: 'blog',
@@ -13,8 +15,12 @@ const { items: articles} = await newtClient.getContents<Article>({
 
 ---
 
+<Layout title="Blog">
+	<Header title={SITE_TITLE} />
+</Layout>
+
 <Layout title="Articles">
-	<h1>blog</h1>
+	<h1>Blog一覧</h1>
 	<main>
 		<ul>
 			{
@@ -27,7 +33,6 @@ const { items: articles} = await newtClient.getContents<Article>({
 				})
 			}
 			<br>
-			<a href ={`/contact`}>🌟お問い合わせはこちらから🌟</a>
 		</ul>
 	</main>
 </Layout>
@@ -38,5 +43,7 @@ const { items: articles} = await newtClient.getContents<Article>({
 	ul li{
 		list-style: none;
 	}
+
+	
 
 </style>
